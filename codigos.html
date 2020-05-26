@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.min.js"></script>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
+        integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <!--<script src="https://www.gstatic.com/firebasejs/6.2.0/firebase.js"></script>-->
+
+</head>
+
+<body>
+    <div id="app">
+        <div class="container">
+            <div class="row pt-3">
+                <h3>Agregar pacientes</h3>
+                <div class="col-12">
+                    <form>
+                        <hr>
+                        <h4>Datos generales del usuario</h4>
+                        <div class="form-row">
+                            <div class="form-group col-md-4">
+                                <label for="edad">EDAD:</label>
+                                <input autofocus type="number" maxlength="3" class="form-control" id="edad" v-model="edad">
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label for="sexo">SEXO:</label>
+                                <input type="text" maxlength="1" class="form-control" id="sexo" v-model="sexo">
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label for="derechohabencia">DERECHOHABENCIA:</label>
+                                <input type="text" class="form-control" id="derechohabencia" v-model="derechohabencia">
+                            </div>
+                        </div>
+                        <!-- Acciones Gnerales 2da parte -->
+                        <hr>
+                        <h4>Acciones generales</h4>
+                        <div class="form-row">
+                            <div class="form-group col-md-3">
+                                <label for="primeraVez">Primera vez:</label>
+                                <input type="text" class="form-control" id="primeraVez" v-model="primeraVez">
+                            </div>
+                            <div class="form-group col-md-3">
+                                <label for="subsecuente">Subsecuente:</label>
+                                <input type="text" class="form-control" id="subsecuente" v-model="subsecuente">
+                            </div>
+                            <div class="form-group col-md-3">
+                                <label for="programasControl">Programas de contro #:</label>
+                                <input type="text" class="form-control" id="programasControl"
+                                    v-model="programasControl">
+                            </div>
+                            <div class="form-group col-md-3">
+                                <label for="urgencias">Urgencias:</label>
+                                <input type="text" class="form-control" id="urgencias" v-model="urgencias">
+                            </div>
+                            <div class="form-group col-md-3">
+                                <label for="pacienteObs">Paciente en observacion:</label>
+                                <input type="text" class="form-control" id="pacienteObs" v-model="pacienteObs">
+                            </div>
+                            <div class="form-group col-md-3">
+                                <label for="referido">Referido:</label>
+                                <input type="text" class="form-control" id="referido" v-model="referido">
+                            </div>
+                            <div class="form-group col-md-3">
+                                <label for="discapacidad">Discapacidad:</label>
+                                <input type="text" class="form-control" id="discapacidad" v-model="discapacidad">
+                            </div>
+                            <div class="form-group col-md-3">
+                                <label for="curacion">Curación:</label>
+                                <input type="text" class="form-control" id="curacion" v-model="curacion">
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label for="viaAdm">Via de Administracion de farmacos:</label>
+                                <input type="text" class="form-control" id="viaAdm" v-model="viaAdm">
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label for="picaduraAlc">Picadura de alacrán:</label>
+                                <input type="text" class="form-control" id="picaduraAlc" v-model="picaduraAlc">
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label for="controlTemp">Control de temperatura:</label>
+                                <input type="text" class="form-control" id="controlTemp" v-model="controlTemp">
+                            </div>
+                        </div>
+                        <!-- Simatometria 3ra parte -->
+                        <hr>
+                        <h4>Somatometría</h4>
+                        <div class="form-row">
+                            <div class="form-group col-md-4">
+                                <label for="peso">Peso:</label>
+                                <input type="text" class="form-control" id="peso" v-model="peso">
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label for="talla">Talla:</label>
+                                <input type="text" class="form-control" id="talla" v-model="talla">
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label for="imc">I.M.C:</label>
+                                <input type="text" class="form-control" id="imc" v-model="imc">
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label for="cintura">Cintura:</label>
+                                <input type="text" class="form-control" id="cintura" v-model="cintura">
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label for="perimCef">Perímetro cefálico:</label>
+                                <input type="text" class="form-control" id="perimCef" v-model="perimCef">
+                            </div>
+                        </div>
+                        <!-- Signos Vitales 4ta parte -->
+                        <hr>
+                        <h4>Signos Vitales</h4>
+                        <div class="form-row">
+                            <div class="form-group col-md-4">
+                                <label for="ta">T/A:</label>
+                                <input type="text" class="form-control" id="ta" v-model="ta">
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label for="frecCard">Frecuencia cardiaca:</label>
+                                <input type="text" class="form-control" id="frecCard" v-model="frecCard">
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label for="frecResp">Frecuencia respiratoria:</label>
+                                <input type="text" class="form-control" id="frecResp" v-model="frecResp">
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label for="tempCorp">Temperatura corporal:</label>
+                                <input type="text" class="form-control" id="tempCorp" v-model="tempCorp">
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label for="glucCap">Glucosa capilar:</label>
+                                <input type="text" class="form-control" id="glucCap" v-model="glucCap">
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label for="hemoglobina">Hemoglobina:</label>
+                                <input type="text" class="form-control" id="hemoglobina" v-model="hemoglobina">
+                            </div>
+                            <button class="btn btn-primary"
+                                v-on:click="agregar(clave,edad,sexo,derechohabencia,primeraVez,subsecuente,
+                            programasControl,urgencias,pacienteObs,referido,discapacidad,curacion,viaAdm,picaduraAlc,controlTemp,
+                            peso,talla,imc,cintura,perimCef,ta,frecCard,frecResp,tempCorp,glucCap,hemoglobina)">Guardar</button>
+                        </div>
+                    </form>
+                    <hr>
+                </div>
+                <div class="col-12">
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="basic-addon1"><i class="fa fa-search"></i></span>
+                        </div>
+                        <input type="text" class="form-control" v-model="txtBuscar">
+                    </div>
+                    <div class="table-responsive">
+                    <table class="table table-bordered" style="display: block;overflow-y: auto;overflow-x: auto;    height: 200px;
+                    ">
+                        <thead class="thead-dark">
+                          <tr>
+                            <th>Edad:</th>
+                            <th>Sexo</th>
+                            <th>DerechoHabencia</th>
+                            <th>Primera vez</th>
+                            <th>Subsecuente</th>
+                            <th>Programas Control</th>
+                            <th>Urgencias</th>
+                            <th>PacienteObs</th>
+                            <th>Referido</th>
+                            <th>Discapacidad</th>
+                            <th>Curación</th>
+                            <th>via Administracion</th>
+                            <th>Picadura alacrán</th>
+                            <th>Control temperatura</th>
+                            <th>Peso</th>
+                            <th>Talla</th>
+                            <th>I.M.C</th>
+                            <th>Cintura</th>
+                            <th>Perimetro cefalico</th>
+                            <th>T/A</th>
+                            <th>Frecuencia cardiaca</th>
+                            <th>Frecuencia respiratoria</th>
+                            <th>Temperatura corporal</th>
+                            <th>Glucosa capilar</th>
+                            <th>Hemoglobina</th>
+                            <th>Eliminar</th>
+                          </tr>
+                        </thead>
+                        <tbody v-for="item in listaFiltrada">
+                          <tr>
+                            <td>{{item.edad}}</td>
+                            <td>{{item.sexo}}</td>
+                            <td>{{item.derechohabencia}}</td>
+                            <td>{{item.primeraVez}}</td>
+                            <td>{{item.subsecuente}}</td>
+                            <td>{{item.programasControl}}</td>
+                            <td>{{item.urgencias}}</td>
+                            <td>{{item.pacienteObs}}</td>
+                            <td>{{item.referido}}</td>
+                            <td>{{item.discapacidad}}</td>
+                            <td>{{item.curacion}}</td>
+                            <td>{{item.viaAdm}}</td>
+                            <td>{{item.picaduraAlc}}</td>
+                            <td>{{item.controlTemp}}</td>
+                            <td>{{item.peso}}</td>
+                            <td>{{item.talla}}</td>
+                            <td>{{item.imc}}</td>
+                            <td>{{item.cintura}}</td>
+                            <td>{{item.perimCef}}</td>
+                            <td>{{item.ta}}</td>
+                            <td>{{item.frecCard}}</td>
+                            <td>{{item.frecResp}}</td>
+                            <td>{{item.tempCorp}}</td>
+                            <td>{{item.glucCap}}</td>
+                            <td>{{item.hemoglobina}}</td>
+                            <td><button v-on:click="eliminar(item.clave)" class="btn btn-danger"><i
+                                class="fa fa-trash"></i></button> </li></td>
+                          </tr>
+                        </tbody>
+                      </table>
+                      </div>
+                      
+                      <div class="table-responsive">
+                        <table class="table table-sm table-bordered">
+                            <thead >
+                              <tr>
+                                <th class="table-dark">Usuarios atendidos</th>
+                                <th class="table-dark">Total</th>
+                                <th class="bg-success">Rangos de edades</th>
+                                <th class="bg-success">TOTAL</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr>
+                                <td>Hombres</td>
+                                <td>{{hombresTot}}</td>
+                                <td>0 - 3 años</td>
+                                <td>{{recienNacidosTot}}</td>
+                              </tr>
+                              <tr>
+                                <td>Mujeres</td>
+                                <td>{{mujeresTot}}</td>
+                                <td>4 - 12 años</td>
+                                <td>{{ninosTot}}</td>
+                              </tr>
+                              <tr>
+                                <th class="bg-info">DerechoHabencia</th>
+                                <th class="bg-info">Total</th>
+                                <td>13 - 19 años</td>
+                                <td>{{jovenesTot}}</td>
+                              </tr>
+                              <tr>
+                                <td>1 > Seguro Popular</td>
+                                <td>{{seguroPop}}</td>
+                                <td>20 años o mas</td>
+                                <td>{{adultosTot}}</td>
+                              </tr>
+                              <tr>
+                                <td>2 > ISSSTE</td>
+                                <td>{{isssteTot}}</td>
+                                <td>Mantenimiento</td>
+                                <td>0</td>
+                              </tr>
+                              <tr>
+                                <td>3 > IMSS</td>
+                                <td>{{imssTot}}</td>
+                                <th class="bg-warning">ESFIGMOMANÓMETRO</th>
+                                <th class="bg-warning">TOTAL</th>
+                              </tr>
+                              <tr>
+                                <td>4 > Otros</td>
+                                <td>{{otrosTot}}</td>
+                                <td>Calibración</td>
+                                <td>0</td>
+                              </tr>
+                              <tr>
+                                  <td> 5 > Ninguno</td>
+                                  <td>{{ningunoTot}}</td>
+                                  <td>Mantenimiento</td>
+                                  <td>0</td>
+                              </tr>
+                              <tr class="table-info">
+                                <th>Tipo de consulta/Atencion</th>
+                                <th>Total</th>
+                                <th class="bg-warning">CEyE</th>
+                                <th class="bg-warning">TOTAL</th>
+                              </tr>
+                              <tr>
+                                <td>1 > Primera vez</td>
+                                <td>{{primeraVezTot}}</td>
+                                <td>Lavado</td>
+                                <td>0</td>
+                              </tr>
+                              <tr>
+                                <td>2 > Subsecuente</td>
+                                <td>{{subSecuenteTot}}</td>
+                                <td>Empaquetado</td>
+                                <td>0</td>
+                              </tr>
+                              <tr>
+                                <td>3 > Otros</td>
+                                <td>0</td>
+                                <td>Esterilizado</td>
+                                <td>0</td>
+                              </tr>
+                              <tr class="table-info">
+                                <th>Programas de Control</th>
+                                <th>Total</th>
+                                <th class="bg-warning">ACTIVIDAD DE RPBI</th>
+                                <th class="bg-warning">TOTAL</th>
+                              </tr>
+                              <tr>
+                                <td>1 > Control Prenatal</td>
+                                <td>0</td>
+                                <td>Separado</td>
+                                <td>0</td>
+                              </tr>
+                              <tr>
+                                <td>2 > Control Puerpera</td>
+                                <td>0</td>
+                                <td>Bitacora</td>
+                                <td>0</td>
+                              </tr>
+                              <tr>
+                                <td>3 > Control de Niño sano</td>
+                                <td>0</td>
+                                <td>Informe</td>
+                                <td>0</td>
+                              </tr>
+                              <tr>
+                                <td>4 > Estimulación Temprana</td>
+                                <td>0</td>
+                                <th class="bg-warning">MANEJO DE TARJETONES</th>
+                                <th class="bg-warning">TOTAL</th>
+                              </tr>
+                              <tr>
+                                <td>5 > Planificación Familiar</td>
+                                <td>0</td>
+                                <td>Actualizado</td>
+                                <td>0</td>
+                              </tr>
+                              <tr>
+                                <td>6 > Crónico Degenerativo</td>
+                                <td>0</td>
+                                <td>Mantenimiento</td>
+                                <td>0</td>
+                              </tr>
+                              <tr>
+                                <td>7 > Consulta de Sano</td>
+                                <td>0</td>
+                              </tr>
+                              <tr class="table-info">
+                                <th>Interculturalidad</th>
+                                <th>Total</th>
+                              </tr>
+                              <tr>
+                                <td>1 > Preferencias Sexuales</td>
+                                <td>0</td>
+                              </tr>
+                              <tr>
+                                <td>2 > Preferencias Religiosas</td>
+                                <td>0</td>
+                              </tr>
+                              <tr>
+                                <td>3 > Con Transtornos Mentales</td>
+                                <td>0</td>
+                              </tr>
+                              <tr>
+                                <td>4 > Con Enfermedades InfectoContagiosas</td>
+                                <td>0</td>
+                              </tr>
+                              <tr>
+                                <td>5 > Indigenas</td>
+                                <td>0</td>
+                              </tr>
+                              <tr>
+                                <td>6 > Migrantes</td>
+                                <td>0</td>
+                              </tr>
+                              <tr class="table-info">
+                                <th>ACCIONES GENERALES</th>
+                                <th>Total</th>
+                              </tr>
+                              <tr>
+                                <td>1 > Urgencias</td>
+                                <td>0</td>
+                              </tr>
+                              <tr>
+                                <td>2 > Paciente en Observacion</td>
+                                <td>0</td>
+                              </tr>
+                              <tr>
+                                <td>3 > Referido</td>
+                                <td>0</td>
+                              </tr>
+                              <tr>
+                                <td>4 > Discapacidad</td>
+                                <td>0</td>
+                              </tr>
+                              <tr>
+                                <td>5 > Curacion de Herida</td>
+                                <td>0</td>
+                              </tr>
+                              <tr>
+                                <td>6 > Picado de Alacran</td>
+                                <td>0</td>
+                              </tr>
+                              <tr>
+                                <td>7 > Control de Temperatura</td>
+                                <td>0</td>
+                              </tr>
+                              <tr>
+                                <td>8 > Entrevista</td>
+                                <td>0</td>
+                              </tr>
+                              <tr>
+                                <td>9 > Promocion de Servicio</td>
+                                <td>0</td>
+                              </tr>
+                              <tr>
+                                <td>10 > Visitas Domiciliarias</td>
+                                <td>0</td>
+                              </tr>
+                              <tr class="table-info">
+                                <th>CURACIONES</th>
+                                <th>Total</th>
+                              </tr>
+                              <tr>
+                                <td>1 > Pie diabético</td>
+                                <td>0</td>
+                              </tr>
+                              <tr>
+                                <td>2 > Curación de Herida Quirurgica/Dehiscencia</td>
+                                <td>0</td>
+                              </tr>
+                              <tr>
+                                <td>3 > Herida Infectada</td>
+                                <td>0</td>
+                              </tr>
+                              <tr>
+                                <td>4 > Úlceras Varicosas/Arterial</td>
+                                <td>0</td>
+                              </tr>
+                              <tr>
+                                <td>5 > Úlceras por Presión</td>
+                                <td>0</td>
+                              </tr>
+                              <tr>
+                                <td>6 > Apoyo de Suturas</td>
+                                <td>0</td>
+                              </tr>
+                              <tr>
+                                <td>7 > Retiro de Puntos</td>
+                                <td>0</td>
+                              </tr>
+                              <tr>
+                                <td>8 > Herida Quirúrgica Traumatica</td>
+                                <td>0</td>
+                              </tr>
+                              <tr>
+                                <td>9 > Quemadura</td>
+                                <td>0</td>
+                              </tr>
+                              <tr class="table-info">
+                                <th>SIGNOS VITALES Y SOMATOMETRIA</th>
+                                <th>TOTAL</th>
+                              </tr>
+                              <tr>
+                                <td>T/A</td>
+                                <td>0</td>
+                              </tr>
+                              <tr>
+                                <td>Peso</td>
+                                <td>0</td>
+                              </tr>
+                              <tr>
+                                <td>Talla</td>
+                                <td>0</td>
+                              </tr>
+                              <tr>
+                                <td>Cintura</td>
+                                <td>0</td>
+                              </tr>
+                              <tr>
+                                <td>I.M.C</td>
+                                <td>0</td>
+                              </tr>
+                              <tr>
+                                <td>Perímetro Cefálico</td>
+                                <td>0</td>
+                              </tr>
+                              <tr>
+                                <td>Temperatura Corporal</td>
+                                <td>0</td>
+                              </tr>
+                              <tr>
+                                <td>Frecuencia Cardiaca</td>
+                                <td>0</td>
+                              </tr>
+                              <tr>
+                                <td>Frecuencia Respiratoria</td>
+                                <td>0</td>
+                              </tr>
+                            </tbody>
+                          </table>
+                      </div>
+                   <!-- <ul>
+                        <li v-for="item in listaFiltrada" class="list-group-item">{{item.edad}} : {{item.sexo}}:
+                            {{item.derechohabencia}} : {{item.primeraVez}}
+                            : {{item.subsecuente}} : {{item.programasControl}} : {{item.urgencias}} :
+                            {{item.pacienteObs}} : {{item.referido}} : {{item.discapacidad}}
+                            : {{item.curacion}} : {{item.viaAdm}} : {{item.picaduraAlc}} : {{item.controlTemp}} :
+                            {{item.peso}} : {{item.talla}} : {{item.imc}}
+                            : {{item.cintura}} : {{item.perimCef}} : {{item.ta}} : {{item.frecCard}} : {{item.frecResp}}
+                            : {{item.tempCorp}} : {{item.glucCap}} : {{item.hemoglobina}}
+                            <button v-on:click="eliminar(item.clave)" class="btn btn-danger"><i
+                                    class="fa fa-trash"></i></button> </li>
+                    </ul>
+                -->
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/6.2.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/6.2.0/firebase-database.js"></script>
+<script src="js/ini.js"></script>
+<script src="js/vue.js"></script>
+<script src="app.js"></script>
+
+</html>
